@@ -1,0 +1,25 @@
+name: Deployment pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  simple_deployment_pipeline:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install frontend dependencies 
+        run: cd frontend && npm install
+      - name: Check frontend style
+        run: cd frontend && npm run lint
+      - name: Install backend dependencies
+        run: cd backend && npm install
+      - name: Check backend style
+        run: cd backend && npm run lint
+      - name: Build frontend
+        run: cd backend && npm run build:ui
