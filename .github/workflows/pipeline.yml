@@ -3,7 +3,7 @@ name: Deployment pipeline
 on:
   push:
     branches:
-      - main
+      - master
 
 jobs:
   simple_deployment_pipeline:
@@ -13,7 +13,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
-      - name: Install frontend dependencies 
+      - name: Install frontend dependencies
         run: cd frontend && npm install
       - name: Check frontend style
         run: cd frontend && npm run lint
